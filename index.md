@@ -8,6 +8,8 @@
 Authors: **Jakob Leben** and **Robert Van Rooyen**, University of Victoria,
 Canada
 
+Source Code: [https://github.com/jleben/drum-detection](https://github.com/jleben/drum-detection)
+
 ## Overview
 
 This software system provides central components for drum transcription from
@@ -145,6 +147,11 @@ and voice:
 - [Original+Resynthesis](audio/country00063_resynth.wav) - Original audio
     on the left channel and resynthesized drums on the right channel.
 - [MIDI transcription](midi/country00063_resynthesis.mid)
+
+## Source Code
+
+Repository at GitHub:
+[https://github.com/jleben/drum-detection](https://github.com/jleben/drum-detection)
 
 ## Acknowledgements
 
