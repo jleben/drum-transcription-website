@@ -1,29 +1,34 @@
 ---
 ---
+
+<link rel='stylesheet' href="css/style.css"/>
+
 # Drum Transcription System
 
-Authors: Jakob Leben and Robert Van Rooyen, University of Victoria, Canada
+Authors: **Jakob Leben** and **Robert Van Rooyen**, University of Victoria, Canada
 
 ## Overview
 
-This software sytem provides central components for the task of transcription of
-drum recordings as well as evaluation of the transcription quality. It
-implements detection of drum hits in monophonic audio, transcription of detected
-events into the MIDI file format, evaluation of detection by comparison with
-human-provided information, and visualisation of different stages of audio
-processing in the Sonic Visualiser application.
+This software system provides central components for drum transcription from
+audio recordings into a symbolic form (MIDI). In addition, it provides
+assistance in further software development by evaluation of the transcription
+quality and visualization of data at different stages of audio processing.
 
 The system consists of three main software components with the following roles:
-- Audio Processor: drum hit detection
+
+- Audio Processor: drum hit detection in raw audio
 - Symbolic Processor: transcription to MIDI and quality evaluation
-- Sonic Visualiser plugin: audio processing visualisation
+- Sonic Visualiser plugin: audio processing visualization
 
-The following diagram shows the typical workflow in a drum transcription and
-quality evaluation task, with blue components representing software provided
-by our system, and green components external to the system. The gray parts
-represent intermediate data formats:
+The following diagram shows the typical workflow in the drum transcription and
+quality evaluation tasks, with information flow going from top to bottom.
+Blue components representing software provided by our system, and green
+components external to the system. The gray parts represent intermediate data
+formats:
 
+<div style="text-align:center" markdown="1">
 ![Graph: System Overview](images/architecture.jpg)
+</div>
 
 ## Drum Hit Detection
 
@@ -50,11 +55,13 @@ estimated drum type and strength, in form of a file in the CSV
 
 The Sonic Visualiser plugin provides insight into the operation of the audio
 processor and allows exploration of its parameters. It re-uses the audio
-processor's components to visualise the data at various stages.
+processor\'s components to visualize the data at various stages.
 Processing parameters can be tweaked and the resulting data is immediately
 re-plotted.
 
+<div style="text-align:center" markdown="1">
 ![Sonic Visualiser Screenshot](images/sonic_vis.png)
+</div>
 
 ## Transcription and Evaluation
 
@@ -68,7 +75,7 @@ into a digital audio workstation (DAW) for resynthesis.
 
 Moreover, this program may also perform a statistical evaluation of the
 success of drum hit detection, if provided another CSV or MIDI file to serve as
-ground truth to compare the audio processor's output with. This can be the
+ground truth to compare the audio processor\'s output with. This can be the
 result of annotation of the drum recording in a DAW. However, for highly
 controlled testing of the system, it is typical to create MIDI scores first and
 then synthesize them into audio to process using the system.
