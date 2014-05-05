@@ -6,30 +6,36 @@ Authors: Jakob Leben and Robert Van Rooyen, University of Victoria, Canada
 
 ## Overview
 
-The system implements detection of drum hits in monophonic audio, rendering
-of detected events into the MIDI file format, evaluation of detection by
-comparison with human-provided information, and visualisation of different
-stages of processing in the Sonic Visualiser application.
+This software sytem provides central components for the task of transcription of
+drum recordings as well as evaluation of the transcription quality. It
+implements detection of drum hits in monophonic audio, transcription of detected
+events into the MIDI file format, evaluation of detection by comparison with
+human-provided information, and visualisation of different stages of audio
+processing in the Sonic Visualiser application.
 
-The system consists of three main software components:
-- Drum hit detector
-- MIDI generator and Evaluator
-- Sonic Visualiser plugin
+The system consists of three main software components with the following roles:
+- Audio Processor: drum hit detection
+- Symbolic Processor: transcription to MIDI and quality evaluation
+- Sonic Visualiser plugin: audio processing visualisation
+
+The following diagram shows the typical workflow in a drum transcription and
+quality evaluation task, with blue components representing software provided
+by our system, and green components external to the system. The gray parts
+represent intermediate data formats:
 
 ![Graph: System Overview](images/architecture.jpg)
 
-## Detector
+## Drum Hit Detection
 
-The detector takes as input an audio file containing a recording of a musical
-performance on drums. It analyses the audio to extract features, which allow
-detection of individual drum hits and their properties.
+The audio processor takes as input an audio file containing a recording of a
+musical performance on drums. It analyses the audio to extract features which
+allow detection of individual drum hits and their properties. Currently,
+three types of sounds can be distinguished, according to source: kick drums or
+tom-toms, snare drums, and hi-hats or cymbals.
 
 The output is a list of detected drum hits with their time of occurence and
 estimated drum type and strength, in form of a file in the CSV
-(Comma-Separated Value) format.
-
-
-Example output:
+(Comma-Separated Value) format. For example:
 
     0.00580499,0,0.627796
     0.272834,2,0.12992
@@ -42,31 +48,34 @@ Example output:
 
 ## Visualisation
 
-The Sonic Visualiser plugin provides insight into the operation of the detector
-and allows exploration of its parameters. It re-uses the detector's audio
-processing components to visualise the data at various stages of processing.
-Audio processing parameters may be tweeked and the resulting data is immediately
+The Sonic Visualiser plugin provides insight into the operation of the audio
+processor and allows exploration of its parameters. It re-uses the audio
+processor's components to visualise the data at various stages.
+Processing parameters can be tweaked and the resulting data is immediately
 re-plotted.
 
 ![Sonic Visualiser Screenshot](images/sonic_vis.png)
 
-Screenshot: Sonic Vis: onset detection function + onsets
+## Transcription and Evaluation
 
-
-## MIDI generator and Evaluator
-
-This program takes as input the output file of the detector and an additional
-file that defines the mapping between drum type and strength values as output
-by the detector on one side, and MIDI instrument numbers and note velocities on
+The symbolic processor operates on information about individual drum hits.
+It takes as input the output file of the audio processor and an
+additional file that defines the mapping between the detected drum type and
+strength values on one side and MIDI instrument numbers and note velocities on
 the other side. This mapping is used to generate a MIDI file with notes
-corresponding to the detected drum hits.
+corresponding to the detected drum hits. The MIDI file can easily be loaded
+into a digital audio workstation (DAW) for resynthesis.
 
 Moreover, this program may also perform a statistical evaluation of the
-detector's performance, if provided another MIDI file to serve as ground truth
-to compare the detector's output with. The result is information about
-the accuracy, precision and recall of drum hit detection, accuracy of
-drum type and hit strength evaluation, and the confusion matrix of detected
-versus true events, by type.
+success of drum hit detection, if provided another CSV or MIDI file to serve as
+ground truth to compare the audio processor's output with. This can be the
+result of annotation of the drum recording in a DAW. However, for highly
+controlled testing of the system, it is typical to create MIDI scores first and
+then synthesize them into audio to process using the system.
+
+The result of quality evaluation is information about the accuracy, precision
+and recall of drum hit detection, accuracy of drum type and hit strength
+evaluation, and the confusion matrix of detected versus true events, by type.
 
 Example evaluation output:
 
@@ -81,7 +90,7 @@ Example evaluation output:
       other       0       0       0       0       0
       ghost       0       0       0       0
 
-## Transcription and Resynthesis Example
+## Examples
 
 This example demonstrates the effectiveness of the transcription system.
 Below are links to the original drum recording and audio generated by
@@ -98,8 +107,8 @@ comparison.
 ## Acknowledgements
 
 The [Marsyas framework](http://marsyas.info/) is used for composition and
-coordination of audio processing components in the detector and the Sonic
-Visualiser plugin.
+coordination of audio processing components in the drum hit detector and the
+Sonic Visualiser plugin.
 
 This work is a result of the Music information Retrieval course (CSC 575)
 at the University of Victoria, Canada, instructed by prof. George Tzanetakis.
