@@ -128,11 +128,12 @@ This example is based on a MIDI score as an origin. The original score is
 synthesized into audio and then passed through the system. Finally, the
 resulting MIDI transcription is resynthesized again:
 
-- [Original](audio/kshtc120.wav) - The audio synthesized from the original MIDI
+- [Original](audio/kshtc1203.wav) - The audio synthesized from the original MIDI
 score.
-- [Original+Resynthesis](audio/kshtc120_resynthesis.wav) - Resynthesized
+- [Original+Resynthesis](audio/kshtc1203_resynthesis.wav) - Resynthesized
     transcription on the left channel and synthesized original on the right
     channel.
+- [MIDI transcription](midi/kshtc1203_resynthesis.mid)
 
 ### 2. Natural
 
@@ -143,7 +144,7 @@ and voice:
 
 - [Original+Resynthesis](audio/country00063_resynth.wav) - Original audio
     on the left channel and resynthesized drums on the right channel.
-
+- [MIDI transcription](midi/country00063_resynthesis.mid)
 
 ## Acknowledgements
 
