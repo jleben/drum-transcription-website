@@ -1,6 +1,6 @@
 ---
 ---
-# Drum Recording Transcription System
+# Drum Transcription System
 
 Authors: Jakob Leben and Robert Van Rooyen, University of Victoria, Canada
 
@@ -16,7 +16,7 @@ The system consists of three main software components:
 - MIDI generator and Evaluator
 - Sonic Visualiser plugin
 
-Graph: system overview
+![Graph: System Overview](images/architecture.jpg)
 
 ## Detector
 
