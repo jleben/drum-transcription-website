@@ -5,7 +5,8 @@
 
 # Drum Transcription System
 
-Authors: **Jakob Leben** and **Robert Van Rooyen**, University of Victoria, Canada
+Authors: **Jakob Leben** and **Robert Van Rooyen**, University of Victoria,
+Canada
 
 ## Overview
 
@@ -16,15 +17,14 @@ quality and visualization of data at different stages of audio processing.
 
 The system consists of three main software components with the following roles:
 
-- Audio Processor: drum hit detection in raw audio
-- Symbolic Processor: transcription to MIDI and quality evaluation
-- Sonic Visualiser plugin: audio processing visualization
+- **Audio Processor** - drum hit detection in raw audio
+- **Symbolic Processor** - transcription to MIDI and quality evaluation
+- **Sonic Visualiser plugin** - audio processing visualization
 
-The following diagram shows the typical workflow in the drum transcription and
-quality evaluation tasks, with information flow going from top to bottom.
-Blue components representing software provided by our system, and green
-components external to the system. The gray parts represent intermediate data
-formats:
+The diagram below shows the complete workflow (from top to bottom) of
+drum transcription and quality evaluation. Blue components represent
+software provided by our system while green components are external to the
+system. Gray parts represent intermediate data formats:
 
 <div style="text-align:center" markdown="1">
 ![Graph: System Overview](images/architecture.jpg)
@@ -34,13 +34,22 @@ formats:
 
 The audio processor takes as input an audio file containing a recording of a
 musical performance on drums. It analyses the audio to extract features which
-allow detection of individual drum hits and their properties. Currently,
-three types of sounds can be distinguished, according to source: kick drums or
-tom-toms, snare drums, and hi-hats or cymbals.
+allow detection of individual drum hits and their properties.
 
-The output is a list of detected drum hits with their time of occurence and
-estimated drum type and strength, in form of a file in the CSV
-(Comma-Separated Value) format. For example:
+Currently, three types of drum sounds can be distinguished:
+
+- kick drums or tom-toms
+- snare drums
+- hi-hats or cymbals.
+
+The output is a list of detected drum hits with the following information:
+
+1. time of occurence
+2. estimated drum type
+3. estimated hit strength
+
+The output is in form of a file in the CSV (Comma-Separated Value) format. For
+example:
 
     0.00580499,0,0.627796
     0.272834,2,0.12992
@@ -80,9 +89,12 @@ result of annotation of the drum recording in a DAW. However, for highly
 controlled testing of the system, it is typical to create MIDI scores first and
 then synthesize them into audio to process using the system.
 
-The result of quality evaluation is information about the accuracy, precision
-and recall of drum hit detection, accuracy of drum type and hit strength
-evaluation, and the confusion matrix of detected versus true events, by type.
+The result of quality evaluation contains:
+
+- accuracy, precision and recall of drum hit detection
+- accuracy of drum type estimation
+- accuracy of hit strength estimation
+- confusion matrix of detected versus true events, by type
 
 Example evaluation output:
 
@@ -99,23 +111,30 @@ Example evaluation output:
 
 ## Examples
 
-The following audio examples demonstrate the effectiveness of the transcription
-system.
+The audio examples in this section demonstrate the effectiveness of the
+transcription system.
 
-The first example is based on a MIDI score as an origin. The original score is
+### 1. Synthetic
+
+This example is based on a MIDI score as an origin. The original score is
 synthesized into audio and then passed through the system. Finally, the
 resulting MIDI transcription is resynthesized again:
 
-- [Original](audio/kshtc120.wav): The audio synthesized from the original MIDI score.
-- [Original+Resynthesis](audio/kshtc120_resynthesis.wav): A combination of the
-    resynthesised MIDI transcription on the left channel and attenuated original
-    audio on the right channel, for live comparison.
+- [Original](audio/kshtc120.wav) - The audio synthesized from the original MIDI
+score.
+- [Original+Resynthesis](audio/kshtc120_resynthesis.wav) - Resynthesized
+    transcription on the left channel and synthesized original on the right
+    channel.
 
-Next example is based on transcription of a real popular music recording.
-The drum hits are well-matched in time, however the drum type recognition is not perfect:
+### 2. Natural
 
-- [Original+Resynthesis](audio/country00063_resynth.wav): The original audio is
-    on the left channel and the resynthesed drums on the right channel.
+This example is based on transcription of a real popular music recording.
+The drum hits are well-matched in time, however the drum type recognition is not
+perfect - it is made more difficult by the presence of other instruments
+and voice:
+
+- [Original+Resynthesis](audio/country00063_resynth.wav) - Original audio
+    on the left channel and resynthesized drums on the right channel.
 
 
 ## Acknowledgements
