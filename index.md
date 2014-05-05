@@ -135,6 +135,7 @@ score.
 - [Original+Resynthesis](audio/kshtc1203_resynthesis.wav) - Resynthesized
     transcription on the left channel and synthesized original on the right
     channel.
+- [Resynthesis](audio/kshtc1203_resynthesis_only.wav) - Mono resynthesized transcription.
 - [MIDI transcription](midi/kshtc1203_resynthesis.mid)
 
 ### 2. Natural
@@ -146,6 +147,7 @@ and voice:
 
 - [Original+Resynthesis](audio/country00063_resynth.wav) - Original audio
     on the left channel and resynthesized drums on the right channel.
+- [Resynthesis](audio/country00063_resynth_only.wav) - Mono resynthesized drums.
 - [MIDI transcription](midi/country00063_resynthesis.mid)
 
 ## Source Code
