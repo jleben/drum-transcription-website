@@ -74,20 +74,28 @@ re-plotted.
 
 ## Transcription and Evaluation
 
-The symbolic processor operates on information about individual drum hits.
-It takes as input the output file of the audio processor and an
-additional file that defines the mapping between the detected drum type and
-strength values on one side and MIDI instrument numbers and note velocities on
-the other side. This mapping is used to generate a MIDI file with notes
-corresponding to the detected drum hits. The MIDI file can easily be loaded
-into a digital audio workstation (DAW) for resynthesis.
+The symbolic processor operates on information about individual drum hits
+to transcribe it into MIDI and evaluate the transcription by comparison
+to a reference file. This is done with the aid of a CSV file that defines
+the mapping between the detected drum types and hit strengths on one side
+and MIDI instrument numbers and note velocities on the other side.
 
-Moreover, this program may also perform a statistical evaluation of the
-success of drum hit detection, if provided another CSV or MIDI file to serve as
-ground truth to compare the audio processor\'s output with. This can be the
-result of annotation of the drum recording in a DAW. However, for highly
-controlled testing of the system, it is typical to create MIDI scores first and
-then synthesize them into audio to process using the system.
+### Transcription
+
+The input to the transcription process is the output of the audio processor.
+With the aid of the mapping file, a MIDI file is generated with notes
+corresponding to the detected drum hits. The MIDI file can easily be loaded into
+a digital audio workstation (DAW) for resynthesis.
+
+### Evaluation
+
+Statistical evaluation of transcription quality requires an additional CSV or
+MIDI file to serve as reference to compare the audio processor\'s output with.
+This can be the result of annotation of the drum recording in a DAW. However,
+for highly controlled testing of the system, it is typical to create reference
+MIDI scores first and then synthesize them into audio to serve as input to the
+transcription system. This avoids the potential ambiguity of real recordings and
+imprecision in the process of manual annotation.
 
 The result of quality evaluation contains:
 
