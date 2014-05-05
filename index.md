@@ -60,7 +60,7 @@ example:
     1.24807,2,0.143118
     1.5151,0,0.618974
 
-## Visualisation
+## Visualization
 
 The Sonic Visualiser plugin provides insight into the operation of the audio
 processor and allows exploration of its parameters. It re-uses the audio
